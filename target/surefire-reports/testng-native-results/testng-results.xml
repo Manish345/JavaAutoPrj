@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Command line suite" duration-ms="10149" started-at="2018-04-17T07:12:14Z" finished-at="2018-04-17T07:12:24Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="10149" started-at="2018-04-17T07:12:14Z" finished-at="2018-04-17T07:12:24Z">
+      <class name="example.firstTestCase">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:example.firstTestCase@3fb6a447]" name="beforeTest" is-config="true" duration-ms="3470" started-at="2018-04-17T12:42:14Z" finished-at="2018-04-17T12:42:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="testEasy()[pri:0, instance:example.firstTestCase@3fb6a447]" name="testEasy" duration-ms="5916" started-at="2018-04-17T12:42:17Z" finished-at="2018-04-17T12:42:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEasy -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:example.firstTestCase@3fb6a447]" name="afterTest" is-config="true" duration-ms="745" started-at="2018-04-17T12:42:23Z" finished-at="2018-04-17T12:42:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- example.firstTestCase -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>
