@@ -1,0 +1,33 @@
+Few Git commands:
+=================
+
+1) To add an origin in system for a git repo in local system
+==========================================================
+git remote add origin https://github.com/Manish345/JavaAutoPrj.git
+git push -u origin master
+
+2) To get the origin details of git repo in local system:
+=========================================================
+git remote get-url origin
+
+3) To reset Head in hit while stuck in conflicts:
+==================================================
+git reset --hard HEAD
+
+4) delete branch in local:
+==========================
+git branch -d branchName
+
+Forced delete:
+--------------
+git branch -D branchName
+
+5) delete branch from remote:
+==========================
+git push -d remoteName branchName
+
+Forced delete:
+--------------
+git push -D remoteName branchName
+
+Note: Mostly remoteName is origin
