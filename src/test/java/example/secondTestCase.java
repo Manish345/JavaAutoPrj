@@ -14,7 +14,7 @@ import reusablesMethods.ReusableMethods;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
-public class firstTestCase {
+public class secondTestCase {
 
 	ReusableMethods obj = new ReusableMethods();
 
@@ -38,7 +38,7 @@ public class firstTestCase {
 
 	@BeforeTest
 	public void beforeTest() throws MalformedURLException {
-		System.out.println("Running First test case");
+		System.out.println("Running Second test case");
 		obj.openApplication();
 	}
 

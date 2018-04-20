@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,33 +26,33 @@ import java.net.MalformedURLException;
 
 public class ReusableMethods {
 	
-	private static WebDriver driver;
+	private WebDriver driver;
 	private int avgWait = 10;// In sec
 	
 	// This function will be used to open the application as per provided URL
-//	public void openApplication() {
-//		System.setProperty("webdriver.chrome.driver","C:\\Work\\Softwares\\Selenium\\Webdrivers\\chromedriver.exe");
-//	    driver = new ChromeDriver();
-//		driver.get("http://demo.guru99.com/test/guru99home/");
-//	}
+	public void openApplication() {
+		String driverResourcePath = System.getProperty("user.dir") + "\\src\\main\\java\\resources\\";
+		System.setProperty("webdriver.chrome.driver",driverResourcePath + "chromedriver.exe");
+		System.out.println(System.getProperty("webdriver.chrome.driver"));
+	    driver = new ChromeDriver();
+		driver.get("http://demo.guru99.com/test/guru99home/");
+	}
 	
-	public void openApplication() throws MalformedURLException {
-//		System.setProperty("webdriver.chrome.driver","C:\\Work\\Softwares\\Selenium\\Webdrivers\\chromedriver.exe");
-//		System.out.println(System.getProperty("webdriver.chrome.driver"));
-//		String nodeURL = "http://192.168.99.1:5555/wd/hub";
-//		DesiredCapabilities capability = DesiredCapabilities.chrome();
-//		capability.setBrowserName("chrome");
-//		capability.setPlatform(Platform.WIN10);
-//		driver = new RemoteWebDriver(new URL(nodeURL), capability);
-//		driver = new ChromeDriver();
-//		driver.get("http://demo.guru99.com/test/guru99home/");
-		
-		System.setProperty("webdriver.ie.driver","C:\\Work\\Softwares\\Selenium\\Webdrivers\\IEDriverServer.exe");
-		System.out.println(System.getProperty("webdriver.ie.driver"));
+	public void openApplication1() {
+		driver.get("http://demo.guru99.com/test/guru99home/");
+	}
+	public void chromeGridSetup() throws MalformedURLException {
+		String nodeURL = "http://192.168.99.1:5555/wd/hub";
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+		capability.setBrowserName("chrome");
+		capability.setPlatform(Platform.WIN10);
+		driver = new RemoteWebDriver(new URL(nodeURL), capability);
+	}
+	
+	public void internetExplorerGridSetup() throws MalformedURLException {
 		String nodeURL1 = "http://192.168.99.1:5555/wd/hub";
 		DesiredCapabilities capability1 = DesiredCapabilities.internetExplorer();
 		
-
 		/*org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
 		proxy.setHttpProxy(nodeURL1)
 		     .setFtpProxy(nodeURL1)
@@ -59,14 +60,18 @@ public class ReusableMethods {
 		capability1.setCapability(CapabilityType.PROXY, proxy);*/
 		//capability1.setBrowserName("internet explorer");
 		//capability1.setPlatform(Platform.WIN10);
-////		capability1.setCapability("initialBrowserUrl" , "http://demo.guru99.com/test/guru99home");
+		capability1.setCapability("timeouts.implicit" , 1000);
 		capability1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		//capability1.setBrowserName(browserName);
 ////		capability1.setCapability("ignoreZoomSetting", true);
 		driver = new RemoteWebDriver(new URL(nodeURL1), capability1);
-//		driver = new InternetExplorerDriver(capability1);
-		driver.get("http://demo.guru99.com/test/guru99home/");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.MINUTES);
 	}
+	
+//	public void openApplication() throws MalformedURLException {
+//		chromeGridSetup();
+//		driver.get("http://demo.guru99.com/test/guru99home/");
+//	}
 	
 	// This function will be used to maximize the browser window
 	public void maximizeBrowserWindow() {
@@ -82,15 +87,11 @@ public class ReusableMethods {
 		}
 		catch(TimeoutException err) {
 			System.out.println("TimeOut Exception");
-//			assertTrue(false, "TimeOut Exception");
-//			throw new TimeoutException("TimeOut Exception");
-			return null;
+			throw new TimeoutException("Timeout while finding an element");
 		}
 		catch(NoSuchElementException err) {
 			System.out.println("Element not found Exception");
-//			assertTrue(false, "Element not found Exception");
-//			throw new NoSuchElementException("Element not found Exception");
-			return null;
+			throw new NoSuchElementException("Element not found Exception");
 		}
 	}
 	
@@ -144,6 +145,12 @@ public class ReusableMethods {
 	// This function will quit the browser window
 	public void quitDriver() {
 		driver.quit();
+	}
+	
+	public void hoverOverLocator(By hoverOverElement) {
+		Actions builder = new Actions(driver);
+		WebElement element = getElementFromLocator(hoverOverElement);
+		builder.moveToElement(element).perform();
 	}
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="TestSuite" time="12.825" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="TestSuite" time="102.878" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_131\jre\bin"/>
     <property name="java.vm.version" value="25.131-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Work\eclipseProjects\JavaAutomation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Work\eclipseProjects\gitJavaAutomation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Work\eclipseProjects\JavaAutomation"/>
+    <property name="user.dir" value="C:\Work\eclipseProjects\gitJavaAutomation"/>
     <property name="java.runtime.version" value="1.8.0_131-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_131\jre\lib\endorsed"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Work\eclipseProjects\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf6376862527994762475.tmp"/>
+    <property name="classworlds.conf" value="C:\Work\eclipseProjects\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1340349027092137240.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_131\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_131/bin/server;C:/Program Files/Java/jre1.8.0_131/bin;C:/Program Files/Java/jre1.8.0_131/lib/amd64;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\Oracle\Java\javapath;C:\Users\agaurav\Documents\apache-maven-3.3.9\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Python27\Lib;C:\Program Files\Java\jdk1.8.0_45\bin;C:\Program Files\Java\jre1.8.0_73\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;%M2_HOME%;C:\Program Files (x86)\Gow\bin;C:\soft\spark-master;C:\soft\spark-master\python;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\scala\bin;C:\soft\maven\bin;C:\Program Files\nodejs\;C:\Users\manish2\AppData\Roaming\npm;%EFS_RESOURCE_PATH%;C:\Python34;C:\Python34\Lib;C:\Python34\Lib\site-packages;C:\Python34\Scripts;C:\Users\manish2\AppData\Roaming\npm;;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Docker Toolbox;C:\Work\Softwares\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -53,7 +53,7 @@
     <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_131\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_131\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Work\eclipseProjects\JavaAutomation\EMBEDDED"/>
+    <property name="maven.home" value="C:\Work\eclipseProjects\gitJavaAutomation\EMBEDDED"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -61,6 +61,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="example.firstTestCase" name="testEasy" time="5.918"/>
-  <testcase classname="JavaAutomationPrj.JavaAutomation.AppTest" name="testApp on testApp(JavaAutomationPrj.JavaAutomation.AppTest)" time="6.907"/>
+  <testcase classname="example.firstTestCase" name="testTitle" time="0.086"/>
+  <testcase classname="example.firstTestCase" name="testHoverOverElement" time="89.628"/>
+  <testcase classname="example.secondTestCase" name="testTitle" time="0.089"/>
+  <testcase classname="example.secondTestCase" name="testHoverOverElement" time="13.075"/>
 </testsuite>
