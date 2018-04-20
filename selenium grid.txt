@@ -1,0 +1,28 @@
+Below are the commands which need to execute to run the testcases in selenium grid:
+
+1) Open a command prompt and type below mentioned command:
+Command:
+--------
+ java -jar selenium-server-standalone-2.53.0.jar -role hub
+ 
+ NOTE: Command prompt is opened with specified jar file then the command works else provide complete jar file path.
+ 
+ 2) Open a new command prompt and execute below command:
+ Command:
+--------
+ 1) java -jar selenium-server-standalone-2.53.0.jar -role webdriver -hub http://192.168.99.1:4444/grid/register -browser browserName="chrome", platform=WINDOWS -Dwebdriver.chrome.driver=C:\Work\Softwares\Selenium\Webdrivers\chromedriver.exe -port 5555
+ 
+ NOTE:
+ i) If port is not provided then the port is assigned by the hub automatically which can be seen in hub command promt.
+ 
+ 3) Open a new command prompt to initiate another node:
+ Command:
+--------
+ 1) 2) java -jar selenium-server-standalone-2.53.0.jar -role webdriver -hub http://192.168.99.1:4444/grid/register -browser browserName="internet explorer", platform=WINDOWS -Dwebdriver.ie.driver=C:\Work\eclipseProjects\gitJavaAutomation\src\main\java\resources\IEDriverServer.exe -port 5555
+
+ NOTE: mention the port other than already execute.
+ 
+ FINAL NOTE: 
+ ===========
+ 1) Once hub started then hit URL: "http://localhost:4444/grid/console" (replace the localhost and port as per the ip and port number of hub initiated)on the browser and verify that the hub is working fine
+ 2) Once the node command are executed and nodes are successfully registered then see that the selected browser details are displaying on the same above hub URL. The number of nodes created, the same number of browsers details will add up on the URL screen with the port and ip details on which they are running.
