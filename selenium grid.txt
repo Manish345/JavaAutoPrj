@@ -1,4 +1,35 @@
+Below code need to add while create driver for selenium grid.
+
+public void chromeGridSetup() throws MalformedURLException {
+		String nodeURL = "http://192.168.99.1:5555/wd/hub";
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+		capability.setBrowserName("chrome");
+		capability.setPlatform(Platform.WIN10);
+		driver = new RemoteWebDriver(new URL(nodeURL), capability);
+	}
+	
+	public void internetExplorerGridSetup() throws MalformedURLException {
+		String nodeURL1 = "http://192.168.99.1:5555/wd/hub";
+		DesiredCapabilities capability1 = DesiredCapabilities.internetExplorer();
+		
+		/*org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
+		proxy.setHttpProxy(nodeURL1)
+		     .setFtpProxy(nodeURL1)
+		     .setSslProxy(nodeURL1);
+		capability1.setCapability(CapabilityType.PROXY, proxy);*/
+		//capability1.setBrowserName("internet explorer");
+		//capability1.setPlatform(Platform.WIN10);
+		capability1.setCapability("timeouts.implicit" , 1000);
+		capability1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		//capability1.setBrowserName(browserName);
+////		capability1.setCapability("ignoreZoomSetting", true);
+		driver = new RemoteWebDriver(new URL(nodeURL1), capability1);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.MINUTES);
+	}
+
+
 Below are the commands which need to execute to run the testcases in selenium grid:
+===================================================================================
 
 1) Open a command prompt and type below mentioned command:
 Command:
