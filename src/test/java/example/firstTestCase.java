@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -12,7 +13,9 @@ import org.testng.annotations.Test;
 import reusablesMethods.ReusableMethods;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 
 public class firstTestCase {
 
@@ -27,22 +30,25 @@ public class firstTestCase {
 		obj.getText(strLocator);
 	}
 	
-	@Test(dependsOnMethods="testTitle")
-	public void testHoverOverElement() {
-//		By testingElement = By.className("item118 parent").className("item");
-		By testingElement = By.xpath("//li[@class='item118 parent']/a[@class='item']");
-		obj.hoverOverLocator(testingElement);
-		By testingOption = By.xpath("//a[@class='item' and contains(text(), 'QTP')]");
-		obj.clickElement(testingOption);
-	}
+//	@Test(dependsOnMethods="testTitle")
+//	public void testHoverOverElement() {
+////		By testingElement = By.className("item118 parent").className("item");
+//		By testingElement = By.xpath("//li[@class='item118 parent']/a[@class='item']");
+//		WebElement hoverOverElement = obj.getChainedElement(parentLocator, childLocator)
+//		obj.hoverOverLocator(testingElement);
+//		By testingOption = By.xpath("//a[@class='item' and contains(text(), 'QTP')]");
+//		obj.clickElement(testingOption);
+//	}
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() throws MalformedURLException {
 		System.out.println("Running First test case");
-		obj.openApplication();
+		obj.setUpDriver();
+		obj.maximizeBrowserWindow();
+		obj.openApplication("http://demo.guru99.com/test/guru99home/");
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		obj.quitDriver();
 	}

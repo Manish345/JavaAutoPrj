@@ -1,10 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-	<test thread-count="1" name="Test" parallel="true">
+<suite name="Practice Suite">
+	<test verbose="3" name="Test suite java" parallel="none">
 		<classes>
-			<class name="example.firstTestCase" />
-			<class name="example.secondTestCase" />
+			<!-- <class name="example.firstTestCase" />
+			<class name="example.secondTestCase" /> -->
+			<class name="example.testUploadFile" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
+
+<!-- I am testing a web-ui using Selenium and TestNG. I have a test suite with many test classes in it. 
+I have a @BeforeSuite method which also has a @Parameters annotation, this method receives as a parameter the browser in which the 
+Selenium test will be run, executing the lines:
+
+selenium = new DefaultSelenium("localhost", 4444, browser, "http://localhost:8099");
+selenium.start();
+
+<suite name="suite">
+<parameter name = "browser" value = "*firefox"/>
+ <test name="allTests">
+  <classes>
+   <class name="test.webui.MemcachedDeploymentTest" />
+  </classes>
+ </test> 
+</suite>
+ -->
+ 
+<!-- <suite name="suite">
+    <test name="Firefox tests">
+        <parameter name="browser" value="*firefox" />
+        <classes>
+            <class name="test.webui.MemcachedDeploymentTest" />
+        </classes>
+    </test>
+    <test name="Chrome tests">
+        <parameter name="browser" value="*chrome" />
+        <classes>
+            <class name="test.webui.MemcachedDeploymentTest" />
+        </classes>
+    </test>
+</suite> -->
+
+
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteA"  > 
+suite name="Suite Name" 
+
+
+             <test name="TestA1" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteA.TestCaseA1" />
+                     </classes>
+             </test>
+
+             <test name="TestA2" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteA.TestCaseA1" />
+                     </classes>
+             </test>
+
+
+
+</suite>
+*******************suiteB.xml*******
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteB"  > 
+suite name="Suite Name" 
+
+
+             <test name="TestB1" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteB.TestCaseB1" />
+                     </classes>
+             </test>
+
+             <test name="TestB2" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteB.TestCaseB2" />
+                     </classes>
+             </test>
+
+
+</suite>
+
+***********************suiteC.xml**********
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteC"  > 
+suite name="Suite Name" 
+
+
+             <test name="TestC1" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteC.TestCaseC1" />
+                     </classes>
+             </test>
+
+             <test name="TestC2" allow-return-values="true">
+                     <classes>
+                       packagename.Testcase class name 
+                             <class name ="com.qtpselenium.suiteC.TestCaseC2" />
+                     </classes>
+             </test>
+
+
+</suite>
+
+*********************testng.xml*****************
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestNG Dadadriver suite"  > 
+suite name="Suite Name" 
+
+
+        <suite-files>
+               <suite-file path="./suiteA.xml" />
+               <suite-file path="./suiteB.xml" />
+               <suite-file path="./suiteC.xml" />
+
+        </suite-files>
+
+
+</suite> -->

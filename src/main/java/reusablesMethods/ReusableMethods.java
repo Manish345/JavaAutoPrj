@@ -3,9 +3,8 @@
  */
 package reusablesMethods;
 
-import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TimeoutException;
@@ -29,49 +28,17 @@ public class ReusableMethods {
 	private WebDriver driver;
 	private int avgWait = 10;// In sec
 	
-	// This function will be used to open the application as per provided URL
-	public void openApplication() {
+	public void setUpDriver() {
 		String driverResourcePath = System.getProperty("user.dir") + "\\src\\main\\java\\resources\\";
-		System.setProperty("webdriver.chrome.driver",driverResourcePath + "chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", driverResourcePath + "chromedriver.exe");
 		System.out.println(System.getProperty("webdriver.chrome.driver"));
 	    driver = new ChromeDriver();
-		driver.get("http://demo.guru99.com/test/guru99home/");
 	}
 	
-	public void openApplication1() {
-		driver.get("http://demo.guru99.com/test/guru99home/");
+	// This function will be used to open the application as per provided URL
+	public void openApplication(String strURL) {
+		driver.get(strURL);
 	}
-	public void chromeGridSetup() throws MalformedURLException {
-		String nodeURL = "http://192.168.99.1:5555/wd/hub";
-		DesiredCapabilities capability = DesiredCapabilities.chrome();
-		capability.setBrowserName("chrome");
-		capability.setPlatform(Platform.WIN10);
-		driver = new RemoteWebDriver(new URL(nodeURL), capability);
-	}
-	
-	public void internetExplorerGridSetup() throws MalformedURLException {
-		String nodeURL1 = "http://192.168.99.1:5555/wd/hub";
-		DesiredCapabilities capability1 = DesiredCapabilities.internetExplorer();
-		
-		/*org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
-		proxy.setHttpProxy(nodeURL1)
-		     .setFtpProxy(nodeURL1)
-		     .setSslProxy(nodeURL1);
-		capability1.setCapability(CapabilityType.PROXY, proxy);*/
-		//capability1.setBrowserName("internet explorer");
-		//capability1.setPlatform(Platform.WIN10);
-		capability1.setCapability("timeouts.implicit" , 1000);
-		capability1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-		//capability1.setBrowserName(browserName);
-////		capability1.setCapability("ignoreZoomSetting", true);
-		driver = new RemoteWebDriver(new URL(nodeURL1), capability1);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.MINUTES);
-	}
-	
-//	public void openApplication() throws MalformedURLException {
-//		chromeGridSetup();
-//		driver.get("http://demo.guru99.com/test/guru99home/");
-//	}
 	
 	// This function will be used to maximize the browser window
 	public void maximizeBrowserWindow() {
@@ -79,9 +46,9 @@ public class ReusableMethods {
 	}
 	
 	// This function will return element of the provided element locator
-	public WebElement getElementFromLocator(By elementLocator) throws TimeoutException,NoSuchElementException {
+	public WebElement getElementFromLocator(By elementLocator) throws TimeoutException, NoSuchElementException {
 		try {
-			WebDriverWait wait=new WebDriverWait(driver, avgWait);
+			WebDriverWait wait = new WebDriverWait(driver, avgWait);
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
 			return element;
 		}
@@ -109,7 +76,9 @@ public class ReusableMethods {
 	
 	// This function will be used to enter the data
 	public void setText(By elementLocator, String strText) {
-		this.getElementFromLocator(elementLocator).sendKeys(strText);
+		WebElement element = this.getElementFromLocator(elementLocator);
+		element.clear();
+		element.sendKeys(strText);
 	}
 	
 	//This function will be used to select an element on the basis of element's value tag 
@@ -147,10 +116,42 @@ public class ReusableMethods {
 		driver.quit();
 	}
 	
-	public void hoverOverLocator(By hoverOverElement) {
+	// This function will be used to get the chained child element
+	public WebElement getChainedElement(By parentLocator, By childLocator) {
+		WebElement element = this.getElementFromLocator(parentLocator);
+		System.out.println("Parent Locator:"+element);
+		element = element.findElement(childLocator);
+		System.out.println("Child Locator:"+element);
+		return element;
+	}
+	
+//	public void hoverOverLocator(By hoverOverElement) {
+//		Actions builder = new Actions(driver);
+//		WebElement element = this.getElementFromLocator(hoverOverElement);
+//		builder.moveToElement(element).perform();
+//	}
+	
+	// This function will be used to hover over element
+	public void hoverOverLocator(WebElement testingElement) {
 		Actions builder = new Actions(driver);
-		WebElement element = getElementFromLocator(hoverOverElement);
-		builder.moveToElement(element).perform();
+		builder.moveToElement(testingElement).perform();
+	}
+	
+	// This function will be used to scroll to element
+	public void scrollToElement(By elementLocator) {
+		WebElement element = this.getElementFromLocator(elementLocator);
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element);
+		actions.perform();
+	}
+	
+	// This function will be used when the element visibility is hindered by some other element
+	public void scrollToElementNotVisible(By elementLocator) {
+		WebElement element = this.getElementFromLocator(elementLocator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
+	public void externalWait(int intWait) throws InterruptedException {
+		Thread.sleep(intWait);
+	}
 }
