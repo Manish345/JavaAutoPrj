@@ -30,15 +30,16 @@ public class firstTestCase {
 		obj.getText(strLocator);
 	}
 	
-//	@Test(dependsOnMethods="testTitle")
-//	public void testHoverOverElement() {
-////		By testingElement = By.className("item118 parent").className("item");
+	@Test(dependsOnMethods="testTitle")
+	public void testHoverOverElement() {
+		By parentLocator = By.xpath("//li[@class='item118 parent']");
+		By childLocator = By.xpath("a[@class='item']");
+		WebElement hoverOverElement = obj.getChainedElement(parentLocator, childLocator);
 //		By testingElement = By.xpath("//li[@class='item118 parent']/a[@class='item']");
-//		WebElement hoverOverElement = obj.getChainedElement(parentLocator, childLocator)
-//		obj.hoverOverLocator(testingElement);
-//		By testingOption = By.xpath("//a[@class='item' and contains(text(), 'QTP')]");
-//		obj.clickElement(testingOption);
-//	}
+		obj.hoverOverLocator(hoverOverElement);
+		By testingOption = By.xpath("//a[@class='item' and contains(text(), 'QTP')]");
+		obj.clickElement(testingOption);
+	}
 
 	@BeforeClass
 	public void beforeTest() throws MalformedURLException {

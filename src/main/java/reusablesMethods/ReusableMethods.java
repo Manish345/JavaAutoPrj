@@ -21,6 +21,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class ReusableMethods {
@@ -28,11 +33,14 @@ public class ReusableMethods {
 	private WebDriver driver;
 	private int avgWait = 10;// In sec
 	
+	public ReusableMethods() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void setUpDriver() {
-		String driverResourcePath = System.getProperty("user.dir") + "\\src\\main\\java\\resources\\";
+		String driverResourcePath = System.getProperty("user.dir") + "\\src\\resource\\java\\drivers\\";
 		System.setProperty("webdriver.chrome.driver", driverResourcePath + "chromedriver.exe");
-		System.out.println(System.getProperty("webdriver.chrome.driver"));
-	    driver = new ChromeDriver();
+		driver = new ChromeDriver();
 	}
 	
 	// This function will be used to open the application as per provided URL
@@ -119,17 +127,9 @@ public class ReusableMethods {
 	// This function will be used to get the chained child element
 	public WebElement getChainedElement(By parentLocator, By childLocator) {
 		WebElement element = this.getElementFromLocator(parentLocator);
-		System.out.println("Parent Locator:"+element);
 		element = element.findElement(childLocator);
-		System.out.println("Child Locator:"+element);
 		return element;
 	}
-	
-//	public void hoverOverLocator(By hoverOverElement) {
-//		Actions builder = new Actions(driver);
-//		WebElement element = this.getElementFromLocator(hoverOverElement);
-//		builder.moveToElement(element).perform();
-//	}
 	
 	// This function will be used to hover over element
 	public void hoverOverLocator(WebElement testingElement) {
@@ -151,7 +151,40 @@ public class ReusableMethods {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
+	// This function will be used to provide defined wait time
 	public void externalWait(int intWait) throws InterruptedException {
 		Thread.sleep(intWait);
 	}
+	
+	// This function will be used to download a file from specified locator at defined location
+	public int downloadFile(String downloadSourceLocator, String executablePath, String downloadPath) throws IOException, InterruptedException {
+		String wget_command = "cmd /c "+ executablePath +" -P "+ downloadPath +" --no-check-certificate " + downloadSourceLocator;
+		Process exec = Runtime.getRuntime().exec(wget_command);
+	    int exitVal = exec.waitFor();
+	    System.out.println("Exit value: " + exitVal);
+	    return exitVal;
+	}
+	
+	public Boolean verifyFileExists(String strFilePath) {
+		File fileObj = new File(strFilePath);
+		if(fileObj.exists() && !fileObj.isDirectory()) { 
+			Boolean fileExistResponse = fileObj.exists();
+			return fileExistResponse;
+		}
+		else {
+			return false;
+		}	
+	}
+	
+	public Boolean deleteFile(String strFilePath) {
+		File fileObj = new File(strFilePath);
+		if(fileObj.exists() && !fileObj.isDirectory()) { 
+			Boolean fileExistResponse = fileObj.exists();
+			return fileExistResponse;
+		}
+		else {
+			return false;
+		}	
+	}
+	
 }
